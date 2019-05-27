@@ -16,10 +16,11 @@ public class FileUtil {
 
     /**
      * 上传文件到阿里云OSS
+     *
      * @param file 文件流
      * @return 返回文件URL
      */
-    public String uploadFile(File file, String subCatalog){
+    public String uploadFile(File file, String subCatalog) {
 
         //初始化OSSClient
         OSSClient ossClient = AliYunOSSClientUtil.getOSSClient();
@@ -40,16 +41,17 @@ public class FileUtil {
 
     /**
      * base64字符转换成file
-     *  @param destPath 保存的文件路径
-     * @param base64 图片字符串
+     *
+     * @param destPath 保存的文件路径
+     * @param base64   图片字符串
      * @param fileName 保存的文件名
      * @return file
      */
-    public File base64ToFile(String destPath,String base64, String fileName) {
+    public File base64ToFile(String destPath, String base64, String fileName) {
         File file = null;
         //创建文件目录
-        String filePath=destPath;
-        File  dir=new File(filePath);
+        String filePath = destPath;
+        File dir = new File(filePath);
         if (!dir.exists() && !dir.isDirectory()) {
             dir.mkdirs();
         }
@@ -57,7 +59,7 @@ public class FileUtil {
         java.io.FileOutputStream fos = null;
         try {
             byte[] bytes = Base64.getDecoder().decode(base64);
-            file=new File(filePath+"/"+fileName);
+            file = new File(filePath + "/" + fileName);
             fos = new java.io.FileOutputStream(file);
             bos = new BufferedOutputStream(fos);
             bos.write(bytes);
@@ -84,6 +86,7 @@ public class FileUtil {
 
     /**
      * 将file转换成base64字符串
+     *
      * @param path
      * @return
      */
@@ -93,7 +96,7 @@ public class FileUtil {
         try {
             File file = new File(path);
             in = new FileInputStream(file);
-            byte[] bytes=new byte[(int)file.length()];
+            byte[] bytes = new byte[(int) file.length()];
             in.read(bytes);
             base64 = Base64.getEncoder().encodeToString(bytes);
         } catch (Exception e) {
@@ -112,15 +115,16 @@ public class FileUtil {
 
     /**
      * MultipartFile类型文件转File
+     *
      * @return File类型文件
      */
-    public File multipartFileToFile(MultipartFile multipartFile, String filePath, String fileName){
+    public File multipartFileToFile(MultipartFile multipartFile, String filePath, String fileName) {
         File f = null;
         File dir = new File(filePath);
         if (!dir.exists() && !dir.isDirectory()) {
             dir.mkdirs();
         }
-        if("".equals(multipartFile) || multipartFile.getSize() <= 0){
+        if ("".equals(multipartFile) || multipartFile.getSize() <= 0) {
             multipartFile = null;
         } else {
             try {
@@ -129,7 +133,7 @@ public class FileUtil {
                 OutputStream os = new FileOutputStream(f);
                 int bytesRead = 0;
                 byte[] buffer = new byte[8192];
-                while ((bytesRead = ins.read(buffer, 0, 8192)) != -1){
+                while ((bytesRead = ins.read(buffer, 0, 8192)) != -1) {
                     os.write(buffer, 0, bytesRead);
                 }
                 os.close();

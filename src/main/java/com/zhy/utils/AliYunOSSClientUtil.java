@@ -37,7 +37,7 @@ public class AliYunOSSClientUtil {
 
     //初始化属性
     static{
-        ENDPOINT = OSSClientConstants.ENDPOINT;
+        ENDPOINT = OSSClientConstants.ENDPOINT_INTERNAL;
         ACCESS_KEY_ID = OSSClientConstants.ACCESS_KEY_ID;
         ACCESS_KEY_SECRET = OSSClientConstants.ACCESS_KEY_SECRET;
         BACKET_NAME = OSSClientConstants.BACKET_NAME;
