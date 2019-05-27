@@ -15,7 +15,7 @@ public class OSSClientConstants {
     /**
      * 阿里云API的外网域名
      */
-    public static final String ENDPOINT = "oss-cn-beijing.aliyuncs.com";
+    public static final String ENDPOINT = "oss-cn-beijing-internal.aliyuncs.com";
     /**
      * 阿里云API的密钥Access Key ID
      */
